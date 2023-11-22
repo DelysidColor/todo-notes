@@ -24,6 +24,9 @@
               type="checkbox"
               v-model="todo.completed" />
             <input class="edit-todo-text" type="text" v-model="todo.text" />
+            <button
+              class="del-todo-btn"
+              @click.prevent="deleteTodo(todo)"></button>
           </li>
         </ul>
       </div>
@@ -63,6 +66,13 @@ export default {
 
       if (this.isNoteCompleted) {
         this.$emit("moveNoteToEnd", this.editedNote.id);
+      }
+    },
+    deleteTodo(todo) {
+      const index = this.editedNote.todos.findIndex((t) => t.id === todo.id);
+
+      if (index !== -1) {
+        this.editedNote.todos.splice(index, 1);
       }
     },
   },
@@ -140,18 +150,24 @@ export default {
   margin-bottom: 15px;
 }
 
-.edit-todos-checkbox {
+.edit-todos-checkbox,
+.del-todo-btn {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   width: 15px;
   height: 8px;
   background-color: #fff;
-  border: 1px solid #6611a7;
+  border: 1px solid #11a720;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
   margin-right: 15px;
+}
+
+.del-todo-btn {
+  margin-left: 10px;
+  border-color: rgb(251, 41, 101);
 }
 
 .edit-todos-checkbox:checked {
