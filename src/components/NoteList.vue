@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Notes</h2>
-    <div style="margin-bottom: 20px">
+    <div class="notes">
       <button class="add-note-btn" @click="openCreateModal">Add Note</button>
     </div>
 
@@ -53,7 +53,7 @@ export default {
       selectedNote: null,
       notes: [
         {
-          id: 1,
+          id: 11,
           title: "Task One",
           todos: [
             { text: "Do this" },
@@ -64,12 +64,12 @@ export default {
           ],
         },
         {
-          id: 2,
+          id: 22,
           title: "Task Two",
           todos: [{ text: "Do this" }],
         },
         {
-          id: 3,
+          id: 33,
           title: "Task Three",
           todos: [{ text: "Do this" }, { text: "Do that" }],
         },
@@ -119,6 +119,10 @@ export default {
 </script>
 
 <style scoped>
+.notes {
+  margin-bottom: 20px;
+}
+
 .add-note-btn {
   justify-items: center;
   padding: 5px 10px;
