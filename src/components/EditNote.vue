@@ -93,12 +93,12 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin-left: 34px;
+  margin-left: 24px;
   margin-bottom: 10px;
 }
 
 .note-title label {
-  margin-right: 35px;
+  margin-right: 23px;
 }
 
 .edit-note-title,
