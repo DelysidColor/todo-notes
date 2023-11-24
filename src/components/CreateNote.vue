@@ -12,15 +12,15 @@
           required />
       </div>
       <div class="note-todos">
-        <label for="create-todos-checkbox">Todo:</label>
+        <legend for="create-todos-checkbox">Todo:</legend>
         <ul class="todos-list">
           <li
             class="todos-list-item"
+            id="create-todos-checkbox"
             v-for="(todo, index) in newNote.todos"
             :key="index">
             <input
               class="create-todos-checkbox"
-              id="create-todos-checkbox"
               type="checkbox"
               v-model="todo.completed" />
             <input class="create-todo-text" type="text" v-model="todo.text" />
