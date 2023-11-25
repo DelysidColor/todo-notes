@@ -17,16 +17,17 @@
           <li
             class="todos-list-item"
             id="edit-todos-checkbox"
-            v-for="(todo, i) in editedNote.todos"
-            :key="i">
+            v-for="(todo, index) in editedNote.todos"
+            :key="index">
             <input
               class="edit-todos-checkbox"
               type="checkbox"
               v-model="todo.completed" />
             <input class="edit-todo-text" type="text" v-model="todo.text" />
             <button
+              type="button"
               class="del-todo-btn"
-              @click.prevent="deleteTodo(todo)"></button>
+              @click="deleteTodo(index)"></button>
           </li>
         </ul>
       </div>
@@ -47,7 +48,8 @@ export default {
   },
   data() {
     return {
-      editedNote: { ...this.initialNote },
+      originalNote: JSON.parse(JSON.stringify(this.initialNote)),
+      editedNote: JSON.parse(JSON.stringify(this.initialNote)),
     };
   },
   methods: {
@@ -68,18 +70,21 @@ export default {
         this.$emit("moveNoteToEnd", this.editedNote.id);
       }
     },
-    deleteTodo(todo) {
-      const index = this.editedNote.todos.findIndex((t) => t.id === todo.id);
-
-      if (index !== -1) {
-        this.editedNote.todos.splice(index, 1);
-      }
+    deleteTodo(index) {
+      this.editedNote.todos.splice(index, 1);
+      console.log(this.originalNote);
+    },
+    resetChanges() {
+      this.editedNote = { ...this.originalNote };
     },
   },
   computed: {
     isNoteCompleted() {
       return this.editedNote.todos.every((todo) => todo.completed);
     },
+  },
+  beforeDestroy() {
+    this.resetChanges();
   },
 };
 </script>
