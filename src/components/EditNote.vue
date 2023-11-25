@@ -72,7 +72,6 @@ export default {
     },
     deleteTodo(index) {
       this.editedNote.todos.splice(index, 1);
-      console.log(this.originalNote);
     },
     resetChanges() {
       this.editedNote = { ...this.originalNote };
